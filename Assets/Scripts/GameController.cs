@@ -14,7 +14,19 @@ public class GameController : MonoBehaviour {
 	private bool hasStartedInfection = false;
 
 	public GameObject[] peoplePrefabs;
-	public Text totalInfectionsText;
+
+	public bool HasGameEnded {
+		get {
+			// if infection is started and there are no infected people OR  
+			// everyone has been infected, then the game is over
+			return hasStartedInfection && (infectedCount == 0 ||
+				infectionsTotal == FindObjectsOfType<peopleMovement> ().Length);
+		}
+	}
+
+	public int TotalInfections {
+		get { return infectionsTotal; } 
+	}
 
 	// Use this for initialization
 	void Start () {
@@ -59,8 +71,6 @@ public class GameController : MonoBehaviour {
 	public void OnNewInfection() {
 		infectedCount++;
 		infectionsTotal++;
-
-		totalInfectionsText.text = "Love Infections: " + infectionsTotal.ToString ();
 	}
 
 	public void OnInfectionEnded() {
