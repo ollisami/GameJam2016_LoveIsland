@@ -45,7 +45,7 @@ public class GameController : MonoBehaviour {
 		Debug.Log(this.GetComponents<peopleMovement>().Length);
 		foreach (var human in FindObjectsOfType<peopleMovement>()) {
 			if (Vector2.Distance (human.transform.position, infectionStartPoint) < HumanRadius + infectionRadius) {
-				human.Infect();
+				human.setIfected();
 			}
 		}
 	}

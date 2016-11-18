@@ -6,27 +6,30 @@ public class peopleMovement : MonoBehaviour {
 	private int mapSize_X;
 	private int mapSize_Y;
 
-	private bool isInfected = false;
-
 	private Vector2 target;
 	public bool infected = false;
 	private float infectionTime = 3.0F;
 
-
+	public Sprite normalSprite;
 	public Sprite infectedSprite;
 	SpriteRenderer rend;
 
 
 	// Use this for initialization
 	void Start () {
-		rend = GetComponent<SpriteRenderer>();
+		rend = GetComponentInChildren<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		move ();
-		if(infected)
+		if (infected) {
 			infectionTime -= Time.deltaTime;
+			if (infectionTime <= 0) {
+				rend.sprite = normalSprite;
+				infected = false;
+			}
+		}
 	}
 
 	public void setMapSize (int x, int y) {
@@ -64,12 +67,5 @@ public class peopleMovement : MonoBehaviour {
 			pos.y = goPos.y;
 		}
 		return pos;
-	}
-
-	public void Infect() {
-		isInfected = true;
-		this.GetComponentInChildren<SpriteRenderer> ().color = Color.green; // just temporary to visualize which are infected and which are not
-		// todo: start moving towards non-infected people?
-		Debug.Log ("Infected!");
 	}
 }
