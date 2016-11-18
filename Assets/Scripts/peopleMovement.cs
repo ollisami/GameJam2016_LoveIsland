@@ -7,16 +7,29 @@ public class peopleMovement : MonoBehaviour {
 	private int mapSize_Y;
 
 	private Vector2 target;
+	public bool infected = false;
+	private float infectionTime = 3.0F;
+
+	public Sprite normalSprite;
+	public Sprite infectedSprite;
+	SpriteRenderer rend;
 
 
 	// Use this for initialization
 	void Start () {
-	
+		rend = GetComponentInChildren<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		move ();
+		if (infected) {
+			infectionTime -= Time.deltaTime;
+			if (infectionTime <= 0) {
+				rend.sprite = normalSprite;
+				infected = false;
+			}
+		}
 	}
 
 	public void setMapSize (int x, int y) {
@@ -31,7 +44,28 @@ public class peopleMovement : MonoBehaviour {
 			pos.y = Mathf.Lerp(transform.position.y, target.y, 1 * Time.deltaTime);
 			transform.position = pos;
 		} else {
-			target =  new Vector2(Random.Range((mapSize_X/2)*-1, mapSize_X/2), Random.Range((mapSize_Y/2)*-1, mapSize_Y/2));
+			target = setTargetPos ();
 		}
+	}
+		
+
+	public void setIfected () {
+		infected = true;
+		infectionTime = 3.0F;
+		rend.sprite = infectedSprite;
+	}
+
+	private Vector2 setTargetPos() {
+		Vector2 pos;
+		if (!infected)
+			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
+		else {
+			GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
+			GameObject go = people[Random.Range(0,people.Length)];
+			Vector3 goPos = go.transform.position;
+			pos.x = goPos.x;
+			pos.y = goPos.y;
+		}
+		return pos;
 	}
 }
