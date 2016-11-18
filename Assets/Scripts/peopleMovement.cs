@@ -49,6 +49,7 @@ public class peopleMovement : MonoBehaviour {
 			Vector3 pos = transform.position;
 			pos.x = Mathf.Lerp(transform.position.x, target.x, 1 * Time.deltaTime);
 			pos.y = Mathf.Lerp(transform.position.y, target.y, 1 * Time.deltaTime);
+			checkCollision ();
 			transform.position = pos;
 		} else {
 			target = setTargetPos ();
@@ -56,8 +57,8 @@ public class peopleMovement : MonoBehaviour {
 	}
 		
 
-	public void setIfected () {
-		if (infected) {
+	public void setInfected () {
+		if (infected || hasBeenInfected) {
 			return;
 		}
 
@@ -68,17 +69,39 @@ public class peopleMovement : MonoBehaviour {
 		gameController.OnNewInfection ();
 	}
 
-	private Vector2 setTargetPos() {
+	public Vector2 setTargetPos() {
 		Vector2 pos;
 		if (!infected)
 			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
 		else {
 			GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
-			GameObject go = people[Random.Range(0,people.Length)];
+			GameObject go = people [Random.Range (0, people.Length)];
+			if (go == this.gameObject || go.GetComponent<peopleMovement> ().isInfected ()) {
+				return Vector2.zero;
+			}
 			Vector3 goPos = go.transform.position;
 			pos.x = goPos.x;
 			pos.y = goPos.y;
 		}
 		return pos;
 	}
+
+	private void checkCollision () {
+		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.5F, Vector2.zero);
+		foreach (RaycastHit2D hit in hits) {
+			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
+				if (infected) {
+					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
+					return;
+				}
+				setTargetPos();
+				hit.collider.gameObject.GetComponent<peopleMovement> ().setTargetPos ();
+			}
+		}
+	}
+
+	public bool isInfected() {
+		return this.infected;
+	}
+		
 }
