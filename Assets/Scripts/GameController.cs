@@ -60,7 +60,7 @@ public class GameController : MonoBehaviour {
 		infectedCount++;
 		infectionsTotal++;
 
-		totalInfectionsText.text = "Lovers: " + infectionsTotal.ToString ();
+		totalInfectionsText.text = "Love Infections: " + infectionsTotal.ToString ();
 	}
 
 	public void OnInfectionEnded() {

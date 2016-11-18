@@ -17,6 +17,8 @@ public class peopleMovement : MonoBehaviour {
 	public Sprite usedSprite;
 	SpriteRenderer rend;
 
+	public float InfectionLength = 3.0f; // can be set in editor
+
 
 	// Use this for initialization
 	void Start () {
@@ -63,7 +65,7 @@ public class peopleMovement : MonoBehaviour {
 		}
 
 		infected = true;
-		infectionTime = 3.0F;
+		infectionTime = this.InfectionLength;
 		rend.sprite = infectedSprite;
 
 		gameController.OnNewInfection ();
