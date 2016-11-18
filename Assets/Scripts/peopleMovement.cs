@@ -54,8 +54,8 @@ public class peopleMovement : MonoBehaviour {
 	}
 		
 
-	public void setIfected () {
-		if (infected) {
+	public void setInfected () {
+		if (infected || hasBeenInfected) {
 			return;
 		}
 

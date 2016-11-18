@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour {
 
 		foreach (var human in FindObjectsOfType<peopleMovement>()) {
 			if (Vector2.Distance (human.transform.position, infectionStartPoint) < HumanRadius + infectionRadius) {
-				human.setIfected();
+				human.setInfected();
 			}
 		}
 	}
