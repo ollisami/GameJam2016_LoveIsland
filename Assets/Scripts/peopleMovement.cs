@@ -17,6 +17,8 @@ public class peopleMovement : MonoBehaviour {
 	public Sprite usedSprite;
 	SpriteRenderer rend;
 
+	public float InfectionLength = 3.0f; // can be set in editor
+
 
 	// Use this for initialization
 	void Start () {
@@ -33,6 +35,8 @@ public class peopleMovement : MonoBehaviour {
 				rend.sprite = usedSprite;
 				hasBeenInfected = true;
 				infected = false;
+
+				gameController.OnInfectionEnded ();
 			}
 		}
 	}
@@ -61,8 +65,10 @@ public class peopleMovement : MonoBehaviour {
 		}
 
 		infected = true;
-		infectionTime = 3.0F;
+		infectionTime = this.InfectionLength;
 		rend.sprite = infectedSprite;
+
+		gameController.OnNewInfection ();
 	}
 
 	public Vector2 setTargetPos() {
@@ -82,6 +88,10 @@ public class peopleMovement : MonoBehaviour {
 		return pos;
 	}
 
+	public void setTargetPos (Vector2 newpos) {
+		target = newpos;
+	}
+
 	private void checkCollision () {
 		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.5F, Vector2.zero);
 		foreach (RaycastHit2D hit in hits) {
@@ -90,8 +100,9 @@ public class peopleMovement : MonoBehaviour {
 					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
 					return;
 				}
-				setTargetPos();
-				hit.collider.gameObject.GetComponent<peopleMovement> ().setTargetPos ();
+				Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
+				target.x = newPos.x;
+				target.y = newPos.y;
 			}
 		}
 	}
