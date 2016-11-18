@@ -47,14 +47,24 @@ public class peopleMovement : MonoBehaviour {
 	}
 
 	private void move() {
+		Rotate ();
 		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) && Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
-			Vector3 pos = transform.position;
-			pos.x = Mathf.Lerp(transform.position.x, target.x, 1 * Time.deltaTime);
-			pos.y = Mathf.Lerp(transform.position.y, target.y, 1 * Time.deltaTime);
-			checkCollision ();
-			transform.position = pos;
+		transform.Translate(Vector2.right * (2 * Time.deltaTime));
+		checkCollision ();
 		} else {
 			target = setTargetPos ();
+		}
+	}
+
+	const float Threshold = 1e-3f;
+	void Rotate()
+	{
+		Vector2 dir = transform.InverseTransformPoint(target);
+		float angle = Vector2.Angle(Vector2.right, dir);
+		angle = dir.y < 0 ? -angle : angle;
+		if (Mathf.Abs(angle) > Threshold)
+		{
+			transform.Rotate(Vector3.forward, 500 * Time.deltaTime * Mathf.Sign(angle));
 		}
 	}
 		
