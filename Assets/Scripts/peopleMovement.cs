@@ -88,6 +88,10 @@ public class peopleMovement : MonoBehaviour {
 		return pos;
 	}
 
+	public void setTargetPos (Vector2 newpos) {
+		target = newpos;
+	}
+
 	private void checkCollision () {
 		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.5F, Vector2.zero);
 		foreach (RaycastHit2D hit in hits) {
@@ -96,8 +100,9 @@ public class peopleMovement : MonoBehaviour {
 					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
 					return;
 				}
-				setTargetPos();
-				hit.collider.gameObject.GetComponent<peopleMovement> ().setTargetPos ();
+				Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
+				target.x = newPos.x;
+				target.y = newPos.y;
 			}
 		}
 	}
