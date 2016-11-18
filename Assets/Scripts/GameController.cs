@@ -21,7 +21,8 @@ public class GameController : MonoBehaviour {
 	private void spawnPeople(int count) {
 		for (int i = 0; i < count; i++) {
 			Vector2 pos = getRandomPos ();
-			Instantiate (peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], pos, Quaternion.identity);
+			GameObject go = Instantiate (peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], pos, Quaternion.identity) as GameObject;
+			go.GetComponent<peopleMovement> ().setMapSize (mapSize_X, mapSize_Y);
 		}
 	}
 
