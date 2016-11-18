@@ -132,6 +132,25 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a85753d08568c2b4f854b8a12ee45f5e, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &454578077 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1000010203617598, guid: a85753d08568c2b4f854b8a12ee45f5e,
+    type: 2}
+  m_PrefabInternal: {fileID: 115310273}
+--- !u!58 &454578080
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 454578077}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5
 --- !u!1 &477314855
 GameObject:
   m_ObjectHideFlags: 0
@@ -351,6 +370,7 @@ GameObject:
   - 33: {fileID: 1507280070}
   - 64: {fileID: 1507280069}
   - 23: {fileID: 1507280068}
+  - 114: {fileID: 1507280072}
   m_Layer: 0
   m_Name: Water
   m_TagString: Untagged
@@ -419,3 +439,16 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &1507280072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1507280067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebdeb3c76f402954c9f98e8c49a6b0dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scrollSpeed: 0.5
+  rend: {fileID: 0}
