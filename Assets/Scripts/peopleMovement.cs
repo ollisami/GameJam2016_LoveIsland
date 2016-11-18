@@ -10,9 +10,11 @@ public class peopleMovement : MonoBehaviour {
 	private Vector2 target;
 	public bool infected = false;
 	private float infectionTime = 3.0F;
+	private bool hasBeenInfected = false;
 
 	public Sprite normalSprite;
 	public Sprite infectedSprite;
+	public Sprite usedSprite;
 	SpriteRenderer rend;
 
 
@@ -28,7 +30,8 @@ public class peopleMovement : MonoBehaviour {
 		if (infected) {
 			infectionTime -= Time.deltaTime;
 			if (infectionTime <= 0) {
-				rend.sprite = normalSprite;
+				rend.sprite = usedSprite;
+				hasBeenInfected = true;
 				infected = false;
 			}
 		}
