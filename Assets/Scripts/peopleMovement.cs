@@ -2,6 +2,7 @@
 using System.Collections;
 
 public class peopleMovement : MonoBehaviour {
+	private GameController gameController;
 
 	private int mapSize_X;
 	private int mapSize_Y;
@@ -18,6 +19,7 @@ public class peopleMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		rend = GetComponentInChildren<SpriteRenderer>();
+		gameController = FindObjectOfType<GameController> ();
 	}
 	
 	// Update is called once per frame
@@ -50,6 +52,10 @@ public class peopleMovement : MonoBehaviour {
 		
 
 	public void setIfected () {
+		if (infected) {
+			return;
+		}
+
 		infected = true;
 		infectionTime = 3.0F;
 		rend.sprite = infectedSprite;
