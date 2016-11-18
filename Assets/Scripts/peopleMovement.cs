@@ -6,6 +6,8 @@ public class peopleMovement : MonoBehaviour {
 	private int mapSize_X;
 	private int mapSize_Y;
 
+	private bool isInfected = false;
+
 	private Vector2 target;
 
 
@@ -33,5 +35,12 @@ public class peopleMovement : MonoBehaviour {
 		} else {
 			target =  new Vector2(Random.Range((mapSize_X/2)*-1, mapSize_X/2), Random.Range((mapSize_Y/2)*-1, mapSize_Y/2));
 		}
+	}
+
+	public void Infect() {
+		isInfected = true;
+		this.GetComponentInChildren<SpriteRenderer> ().color = Color.green; // just temporary to visualize which are infected and which are not
+		// todo: start moving towards non-infected people?
+		Debug.Log ("Infected!");
 	}
 }
