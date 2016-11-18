@@ -82,6 +82,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infected: 0
+  normalSprite: {fileID: 21300000, guid: 20d81c32214e80947b717dfefb91339a, type: 3}
   infectedSprite: {fileID: 21300000, guid: eef64513abec1fb4a9976903ca6220d4, type: 3}
 --- !u!212 &212000013704227218
 SpriteRenderer:
