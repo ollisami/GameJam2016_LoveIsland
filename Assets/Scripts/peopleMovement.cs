@@ -65,7 +65,7 @@ public class peopleMovement : MonoBehaviour {
 		rend.sprite = infectedSprite;
 	}
 
-	private Vector2 setTargetPos() {
+	public Vector2 setTargetPos() {
 		Vector2 pos;
 		if (!infected)
 			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
@@ -83,13 +83,15 @@ public class peopleMovement : MonoBehaviour {
 	}
 
 	private void checkCollision () {
-		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.8F, Vector2.zero);
+		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.5F, Vector2.zero);
 		foreach (RaycastHit2D hit in hits) {
 			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
 				if (infected) {
 					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
+					return;
 				}
 				setTargetPos();
+				hit.collider.gameObject.GetComponent<peopleMovement> ().setTargetPos ();
 			}
 		}
 	}
