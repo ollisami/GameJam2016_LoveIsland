@@ -108,7 +108,6 @@ public class peopleMovement : MonoBehaviour {
 			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
 				if (infected) {
 					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
-					return;
 				}
 				Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
 				target.x = newPos.x;
