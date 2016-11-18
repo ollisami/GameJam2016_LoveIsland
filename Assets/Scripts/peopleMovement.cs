@@ -49,7 +49,21 @@ public class peopleMovement : MonoBehaviour {
 	private void move() {
 		Rotate ();
 		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) && Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
-		transform.Translate(Vector2.right * (2 * Time.deltaTime));
+		//transform.Translate(Vector2.right * (2 * Time.deltaTime));
+			Vector3 pos = transform.position;
+			float mvspeed = 1F;
+			if (transform.position.x < target.x) {
+				pos.x += mvspeed * Time.deltaTime;
+			} else if (transform.position.y < target.y) {
+				pos.y += mvspeed * Time.deltaTime;
+			}  
+			if (transform.position.x > target.x) {
+				pos.x -= mvspeed * Time.deltaTime;
+			}
+			else if (transform.position.y > target.y) {
+				pos.y -= mvspeed * Time.deltaTime;
+			}
+			transform.position = pos;
 		checkCollision ();
 		} else {
 			target = setTargetPos ();
@@ -109,9 +123,10 @@ public class peopleMovement : MonoBehaviour {
 				if (infected) {
 					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
 				}
-				Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
+				/*Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
 				target.x = newPos.x;
 				target.y = newPos.y;
+				*/
 			}
 		}
 	}
