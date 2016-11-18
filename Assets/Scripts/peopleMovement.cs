@@ -87,7 +87,7 @@ public class peopleMovement : MonoBehaviour {
 		foreach (RaycastHit2D hit in hits) {
 			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
 				if (infected) {
-					hit.collider.gameObject.GetComponent<peopleMovement> ().setIfected ();
+					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
 				}
 				setTargetPos();
 			}
@@ -97,4 +97,5 @@ public class peopleMovement : MonoBehaviour {
 	public bool isInfected() {
 		return this.infected;
 	}
+		
 }
