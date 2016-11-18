@@ -33,6 +33,8 @@ public class peopleMovement : MonoBehaviour {
 				rend.sprite = usedSprite;
 				hasBeenInfected = true;
 				infected = false;
+
+				gameController.OnInfectionEnded ();
 			}
 		}
 	}
@@ -62,6 +64,8 @@ public class peopleMovement : MonoBehaviour {
 		infected = true;
 		infectionTime = 3.0F;
 		rend.sprite = infectedSprite;
+
+		gameController.OnNewInfection ();
 	}
 
 	private Vector2 setTargetPos() {

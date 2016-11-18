@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
@@ -13,14 +14,7 @@ public class GameController : MonoBehaviour {
 	private bool hasStartedInfection = false;
 
 	public GameObject[] peoplePrefabs;
-
-	public int InfectedCount {
-		get { return infectedCount; }
-	}
-
-	public int InfectionsTotal {
-		get { return infectionsTotal; }
-	}
+	public Text totalInfectionsText;
 
 	// Use this for initialization
 	void Start () {
@@ -65,6 +59,8 @@ public class GameController : MonoBehaviour {
 	public void OnNewInfection() {
 		infectedCount++;
 		infectionsTotal++;
+
+		totalInfectionsText.text = "Lovers: " + infectionsTotal.ToString ();
 	}
 
 	public void OnInfectionEnded() {
