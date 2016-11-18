@@ -3,6 +3,9 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
+	private int infectedCount = 0;
+	private int infectionsTotal = 0;
+
 	private int mapSize_X = 10;
 	private int mapSize_Y = 10;
 
@@ -10,6 +13,15 @@ public class GameController : MonoBehaviour {
 	private bool hasStartedInfection = false;
 
 	public GameObject[] peoplePrefabs;
+
+	public int InfectedCount {
+		get { return infectedCount; }
+	}
+
+	public int InfectionsTotal {
+		get { return infectionsTotal; }
+	}
+
 	// Use this for initialization
 	void Start () {
 		spawnPeople (5);
@@ -42,11 +54,20 @@ public class GameController : MonoBehaviour {
 
 		const float HumanRadius = 1; // the width and height of human is 1
 		float infectionRadius = 0.1f; // todo: bigger radius if you have upgrades?
-		Debug.Log(this.GetComponents<peopleMovement>().Length);
+
 		foreach (var human in FindObjectsOfType<peopleMovement>()) {
 			if (Vector2.Distance (human.transform.position, infectionStartPoint) < HumanRadius + infectionRadius) {
-				human.setIfected();
+				human.setInfected();
 			}
 		}
+	}
+
+	public void OnNewInfection() {
+		infectedCount++;
+		infectionsTotal++;
+	}
+
+	public void OnInfectionEnded() {
+		infectedCount--;
 	}
 }
