@@ -81,5 +81,11 @@ public class GameController : MonoBehaviour {
 				p.speedUp ();
 			}
 		}
+		if (index == 1) {
+
+		}
+		if (index == 2) {
+			hasStartedInfection = false;
+		}
 	}
 }
