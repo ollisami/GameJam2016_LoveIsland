@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PersonMovement : MonoBehaviour {
 	private GameController gameController;
@@ -21,6 +22,7 @@ public class PersonMovement : MonoBehaviour {
 	SpriteRenderer rend;
 
 	public float InfectionLength = 3.0f; // can be set in editor
+	public GameObject targetObject = null;
 
 
 	// Use this for initialization
@@ -52,24 +54,26 @@ public class PersonMovement : MonoBehaviour {
 	}
 
 	private void move() {
+		if (infected)
+			target = setTargetPos ();
 		Rotate ();
-		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) && Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
+		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) || Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
 		//Liikkuminen x ja y akselilla diagonaalien sijaan?
 			Vector3 pos = transform.position;
 			float mvspeed = 1F * speedMultiplier;
-			if (transform.position.x < target.x) {
+			if (Mathf.Round(transform.position.x) < Mathf.Round(target.x)) {
 				pos.x += mvspeed * Time.deltaTime;
-			} else if (transform.position.y < target.y) {
+			} else if (Mathf.Round(transform.position.y) < Mathf.Round(target.y)) {
 				pos.y += mvspeed * Time.deltaTime;
 			}  
-			if (transform.position.x > target.x) {
+			else if (Mathf.Round(transform.position.x) > Mathf.Round(target.x)) {
 				pos.x -= mvspeed * Time.deltaTime;
 			}
-			else if (transform.position.y > target.y) {
+			else {//(transform.position.y > target.y) {
 				pos.y -= mvspeed * Time.deltaTime;
 			}
 			transform.position = pos;
-		checkCollision ();
+			checkCollision ();
 		} else {
 			target = setTargetPos ();
 		}
@@ -103,19 +107,22 @@ public class PersonMovement : MonoBehaviour {
 	}
 
 	public Vector2 setTargetPos() {
-		Vector2 pos;
+		Vector2 pos = Vector2.zero;
 		if (!infected)
 			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
 		else {
-			// Päivitää target joka framella että näyttää siltä että juoksee perässä
-			GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
-			GameObject go = people [Random.Range (0, people.Length)];
-			if (go == this.gameObject || go.GetComponent<PersonMovement> ().isInfected ()) {
-				return Vector2.zero;
+			if (targetObject == null || targetObject.GetComponent<PersonMovement>().isInfected()) {
+				GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
+				for (int i = 0; i < people.Length; i++) {
+					if (people [i].GetComponent<PersonMovement> ().isInfected () == false) {
+						targetObject = people [i];
+					}
+				}
 			}
-			Vector3 goPos = go.transform.position;
-			pos.x = goPos.x;
-			pos.y = goPos.y;
+			if (targetObject != null) {
+				pos.x = targetObject.transform.position.x;
+				pos.y = targetObject.transform.position.y;
+			}
 		}
 		return pos;
 	}
@@ -125,7 +132,7 @@ public class PersonMovement : MonoBehaviour {
 	}
 
 	private void checkCollision () {
-		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 0.4F);
+		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 0.3F);
 		foreach (Collider2D hit in hits) {
 			if (hit.gameObject != this.gameObject && hit.gameObject.tag == "people") {
 				if (infected) {
