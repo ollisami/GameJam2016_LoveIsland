@@ -119,6 +119,8 @@ MonoBehaviour:
   InfectionLength: 5
   targetObject: {fileID: 0}
   dir: 0
+  HeartDropPrefab: {fileID: 1000012777698382, guid: 2b434c3903b4a4a2595cd715cfc953c6,
+    type: 2}
 --- !u!212 &212000013704227218
 SpriteRenderer:
   m_ObjectHideFlags: 1
