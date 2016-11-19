@@ -19,7 +19,7 @@ public class PersonBehavior : MonoBehaviour {
 
 		// speed and size are multipliers
 		speed = Random.Range(this.MinSpeed, this.MaxSpeed);
-		size = Random.Range (this.MinSize, this.MaxSpeed);
+		size = 1.0F;//Random.Range (this.MinSize, this.MaxSpeed);
 
 		transform.localScale = new Vector3 (size, size, 0);
 	}

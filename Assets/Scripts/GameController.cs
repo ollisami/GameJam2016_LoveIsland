@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
@@ -15,6 +16,7 @@ public class GameController : MonoBehaviour {
 	private bool hasStartedInfection = false;
 
 	public GameObject[] peoplePrefabs;
+	public List<PersonMovement> personMovments = new List<PersonMovement>();
 
 	public int PeopleToSpawn = 6;
 
@@ -23,7 +25,7 @@ public class GameController : MonoBehaviour {
 			// if infection is started and there are no infected people OR  
 			// everyone has been infected, then the game is over
 			return hasStartedInfection && (infectedCount == 0 ||
-				infectionsTotal == FindObjectsOfType<PersonMovement> ().Length);
+				infectionsTotal == PeopleToSpawn);
 		}
 	}
 
@@ -47,7 +49,9 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < count; i++) {
 			Vector2 pos = getRandomPos ();
 			GameObject go = Instantiate (peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], pos, Quaternion.identity) as GameObject;
-			go.GetComponent<PersonMovement> ().setMapSize (mapSize_X, mapSize_Y);
+			PersonMovement p = go.GetComponent<PersonMovement> ();
+			p.setMapSize (mapSize_X, mapSize_Y);
+			personMovments.Add (p);
 		}
 	}
 
@@ -68,5 +72,14 @@ public class GameController : MonoBehaviour {
 
 	public void OnInfectionEnded() {
 		infectedCount--;
+	}
+
+	public void setPowerup(int index) {
+		if (index == 0) {
+			//speed lovers
+			foreach (PersonMovement p in personMovments) {
+				p.speedUp ();
+			}
+		}
 	}
 }
