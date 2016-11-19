@@ -83,5 +83,13 @@ public class GameController : MonoBehaviour {
 				}
 			}
 		}
+		if (index == 1) {
+
+		}
+		if (index == 2) {
+			if (CoinManager.Instance.UseCoins (10)) {
+				hasStartedInfection = false;
+			}
+		}
 	}
 }

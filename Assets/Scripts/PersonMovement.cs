@@ -30,6 +30,9 @@ public class PersonMovement : MonoBehaviour {
 	private bool speedUpMode = false;
 	private float speedUpTimer = 3.0F;
 
+	private bool freaseMode = false;
+	private float freezeTimer = 3.0F;
+
 	public GameObject HeartDropPrefab;
 
 
@@ -185,6 +188,10 @@ public class PersonMovement : MonoBehaviour {
 			speedMultiplier = speedMultiplier * 2F;
 			speedUpMode = true;
 		}
+	}
+
+	public void freezeGame() {
+
 	}
 		
 }
