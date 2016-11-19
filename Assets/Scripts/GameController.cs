@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour {
 
 	public GameObject[] peoplePrefabs;
 
+	public int PeopleToSpawn = 6;
+
 	public bool HasGameEnded {
 		get {
 			// if infection is started and there are no infected people OR  
@@ -30,7 +32,7 @@ public class GameController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		spawnPeople (5);
+		spawnPeople (this.PeopleToSpawn);
 	}
 
 	// Update is called once per frame

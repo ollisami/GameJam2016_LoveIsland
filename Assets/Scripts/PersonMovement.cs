@@ -54,7 +54,7 @@ public class PersonMovement : MonoBehaviour {
 	private void move() {
 		Rotate ();
 		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) && Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
-		//transform.Translate(Vector2.right * (2 * Time.deltaTime));
+		//Liikkuminen x ja y akselilla diagonaalien sijaan?
 			Vector3 pos = transform.position;
 			float mvspeed = 1F * speedMultiplier;
 			if (transform.position.x < target.x) {
@@ -78,6 +78,8 @@ public class PersonMovement : MonoBehaviour {
 	const float Threshold = 1e-3f;
 	void Rotate()
 	{
+		//Pitäis saada smootattuu?!?
+		// Juoksee nopeammin kun zombeja lähettyvillä?
 		Vector2 dir = transform.InverseTransformPoint(target);
 		float angle = Vector2.Angle(Vector2.right, dir);
 		angle = dir.y < 0 ? -angle : angle;
@@ -105,6 +107,7 @@ public class PersonMovement : MonoBehaviour {
 		if (!infected)
 			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
 		else {
+			// Päivitää target joka framella että näyttää siltä että juoksee perässä
 			GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
 			GameObject go = people [Random.Range (0, people.Length)];
 			if (go == this.gameObject || go.GetComponent<PersonMovement> ().isInfected ()) {
