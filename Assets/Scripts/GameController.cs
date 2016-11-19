@@ -77,8 +77,10 @@ public class GameController : MonoBehaviour {
 	public void setPowerup(int index) {
 		if (index == 0) {
 			//speed lovers
-			foreach (PersonMovement p in personMovments) {
-				p.speedUp ();
+			if (CoinManager.Instance.UseCoins (5)) {
+				foreach (PersonMovement p in personMovments) {
+					p.speedUp ();
+				}
 			}
 		}
 	}
