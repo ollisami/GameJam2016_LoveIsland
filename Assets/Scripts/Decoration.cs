@@ -22,11 +22,16 @@ public class Decoration : MonoBehaviour {
 		
 	void OnTriggerStay2D(Collider2D collider) {
 		// Lower alpha when something is underneath
-		isCovered = true;
+
+		if (collider.GetComponent<PersonMovement> () != null) {
+			isCovered = true;
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D collider) {
 		// Show decoration entirely when nothing is under
-		isCovered = false;
+		if (collider.GetComponent<PersonMovement> () != null) {
+			isCovered = false;
+		}
 	}
 }

@@ -3,12 +3,13 @@ using System.Collections;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
+	private InfectionStart infectionStart = new ClickInfectionStarter();
 
 	private int infectedCount = 0;
 	private int infectionsTotal = 0;
 
-	private int mapSize_X = 10;
-	private int mapSize_Y = 10;
+	public float mapSize_X { get { return 10 * GameObject.Find ("Map").transform.localScale.x; } }
+	public float mapSize_Y { get { return 10 * GameObject.Find ("Map").transform.localScale.y; } }
 
 	// when user clicks somewhere, this will be set true
 	private bool hasStartedInfection = false;
@@ -56,18 +57,8 @@ public class GameController : MonoBehaviour {
 	}
 
 	private void startInfection(Vector2 infectionStartPoint) {
-		// todo: if the click position is out of map bounds then dont
-		// set this to true or something?
-		hasStartedInfection = true; 
-
-		const float HumanRadius = 1; // the width and height of human is 1
-		float infectionRadius = 0.1f; // todo: bigger radius if you have upgrades?
-
-		foreach (var human in FindObjectsOfType<PersonMovement>()) {
-			if (Vector2.Distance (human.transform.position, infectionStartPoint) < HumanRadius + infectionRadius) {
-				human.setInfected();
-			}
-		}
+		var wasInfectionStarted = infectionStart.StartInfection (this, infectionStartPoint);
+		hasStartedInfection = wasInfectionStarted;
 	}
 
 	public void OnNewInfection() {

@@ -5,8 +5,8 @@ using System.Collections.Generic;
 public class PersonMovement : MonoBehaviour {
 	private GameController gameController;
 
-	private int mapSize_X;
-	private int mapSize_Y;
+	private float mapSize_X;
+	private float mapSize_Y;
 
 	private Vector2 target;
 	public bool infected = false;
@@ -51,7 +51,7 @@ public class PersonMovement : MonoBehaviour {
 		}
 	}
 
-	public void setMapSize (int x, int y) {
+	public void setMapSize (float x, float y) {
 		mapSize_X = x;
 		mapSize_Y = y;
 	}
