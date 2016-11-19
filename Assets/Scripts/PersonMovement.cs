@@ -58,7 +58,7 @@ public class PersonMovement : MonoBehaviour {
 		if (speedUpMode) {
 			speedUpTimer -= Time.deltaTime;
 			if (speedUpTimer <= 0) {
-				speedMultiplier = speedMultiplier / 1.5F;
+				speedMultiplier = speedMultiplier / 2F;
 				speedUpMode = false;
 			}
 		}
@@ -182,7 +182,7 @@ public class PersonMovement : MonoBehaviour {
 	public void speedUp() {
 		if (!speedUpMode && infected) {
 			speedUpTimer = 3F;
-			speedMultiplier = speedMultiplier * 1.5F;
+			speedMultiplier = speedMultiplier * 2F;
 			speedUpMode = true;
 		}
 	}
