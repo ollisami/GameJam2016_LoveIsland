@@ -22,7 +22,8 @@ public class PersonMovement : MonoBehaviour {
 	SpriteRenderer rend;
 
 	public float InfectionLength = 3.0f; // can be set in editor
-	public GameObject targetObject = null;
+	private GameObject targetObject = null;
+	private Transform chasingTrans; 
 	public int dir = 0;
 
 	public GameObject HeartDropPrefab;
@@ -58,7 +59,7 @@ public class PersonMovement : MonoBehaviour {
 
 	private void move() {
 		if (infected)
-			target = setTargetPos ();
+			setTargetPos ();
 		if (Mathf.Round(transform.position.x) != Mathf.Round(target.x) || Mathf.Round(transform.position.y) != Mathf.Round(target.y)) {
 		//Liikkuminen x ja y akselilla diagonaalien sijaan?
 			Vector3 pos = transform.position;
@@ -81,7 +82,7 @@ public class PersonMovement : MonoBehaviour {
 			checkCollision ();
 			setSprite ();
 		} else {
-			target = setTargetPos ();
+			setTargetPos ();
 		}
 	}
 
@@ -95,16 +96,23 @@ public class PersonMovement : MonoBehaviour {
 
 		infected = true;
 		infectionTime = this.InfectionLength;
-
 		gameController.OnNewInfection ();
 	}
 
-	public Vector2 setTargetPos() {
+	public void setTargetPos() {
+		if (chasingTrans != null) {
+			Vector3 dir = transform.position - chasingTrans.position;
+			dir.Normalize ();
+			target = new Vector2 (transform.position.x + (dir.x * 3), transform.position.y + (dir.y * 3));
+			chasingTrans = null;
+		}
+
+
 		Vector2 pos = Vector2.zero;
 		if (!infected)
 			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
 		else {
-			if (targetObject == null || targetObject.GetComponent<PersonMovement>().isInfected()) {
+			if (targetObject == null || targetObject.GetComponent<PersonMovement> ().isInfected ()) {
 				GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
 				for (int i = 0; i < people.Length; i++) {
 					if (people [i].GetComponent<PersonMovement> ().isInfected () == false) {
@@ -117,21 +125,20 @@ public class PersonMovement : MonoBehaviour {
 				pos.y = targetObject.transform.position.y;
 			}
 		}
-		return pos;
-	}
+		target = pos;
 
-	public void setTargetPos (Vector2 newpos) {
-		target = newpos;
 	}
+		
 
 	private void checkCollision () {
-		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 0.4F);
+		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 1.0F);
 		foreach (Collider2D hit in hits) {
 			if (hit.gameObject != this.gameObject && hit.gameObject.tag == "people") {
-				if (infected) {
+				if (infected && Vector3.Distance(transform.position, hit.transform.position) < 0.4F) {
 					hit.gameObject.GetComponent<PersonMovement> ().setInfected ();
-				} else if (hit.gameObject.GetComponent<PersonMovement> ().isInfected ()) {
+				} else if (!hasBeenInfected && hit.gameObject.GetComponent<PersonMovement> ().isInfected ()) {
 					//Juokse karkuun
+					chasingTrans = hit.transform;
 				}
 
 			}
