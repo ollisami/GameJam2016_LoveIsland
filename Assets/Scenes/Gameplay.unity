@@ -247,7 +247,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!1 &988692265
 GameObject:
   m_ObjectHideFlags: 0
@@ -277,6 +277,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   peoplePrefabs:
   - {fileID: 1000010203617598, guid: a85753d08568c2b4f854b8a12ee45f5e, type: 2}
+  PeopleToSpawn: 6
 --- !u!4 &988692267
 Transform:
   m_ObjectHideFlags: 0
@@ -507,7 +508,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000011431188294, guid: e4666c945ae36a54cb15dd38b8932ae2, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 223000013911864468, guid: e4666c945ae36a54cb15dd38b8932ae2,
         type: 2}
