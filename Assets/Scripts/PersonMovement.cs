@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class peopleMovement : MonoBehaviour {
+public class PersonMovement : MonoBehaviour {
 	private GameController gameController;
 
 	private int mapSize_X;
@@ -102,7 +102,7 @@ public class peopleMovement : MonoBehaviour {
 		else {
 			GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
 			GameObject go = people [Random.Range (0, people.Length)];
-			if (go == this.gameObject || go.GetComponent<peopleMovement> ().isInfected ()) {
+			if (go == this.gameObject || go.GetComponent<PersonMovement> ().isInfected ()) {
 				return Vector2.zero;
 			}
 			Vector3 goPos = go.transform.position;
@@ -121,7 +121,7 @@ public class peopleMovement : MonoBehaviour {
 		foreach (RaycastHit2D hit in hits) {
 			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
 				if (infected) {
-					hit.collider.gameObject.GetComponent<peopleMovement> ().setInfected();
+					hit.collider.gameObject.GetComponent<PersonMovement> ().setInfected();
 				}
 				/*Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
 				target.x = newPos.x;

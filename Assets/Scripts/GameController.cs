@@ -20,7 +20,7 @@ public class GameController : MonoBehaviour {
 			// if infection is started and there are no infected people OR  
 			// everyone has been infected, then the game is over
 			return hasStartedInfection && (infectedCount == 0 ||
-				infectionsTotal == FindObjectsOfType<peopleMovement> ().Length);
+				infectionsTotal == FindObjectsOfType<PersonMovement> ().Length);
 		}
 	}
 
@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour {
 		for (int i = 0; i < count; i++) {
 			Vector2 pos = getRandomPos ();
 			GameObject go = Instantiate (peoplePrefabs[Random.Range(0, peoplePrefabs.Length)], pos, Quaternion.identity) as GameObject;
-			go.GetComponent<peopleMovement> ().setMapSize (mapSize_X, mapSize_Y);
+			go.GetComponent<PersonMovement> ().setMapSize (mapSize_X, mapSize_Y);
 		}
 	}
 
@@ -61,7 +61,7 @@ public class GameController : MonoBehaviour {
 		const float HumanRadius = 1; // the width and height of human is 1
 		float infectionRadius = 0.1f; // todo: bigger radius if you have upgrades?
 
-		foreach (var human in FindObjectsOfType<peopleMovement>()) {
+		foreach (var human in FindObjectsOfType<PersonMovement>()) {
 			if (Vector2.Distance (human.transform.position, infectionStartPoint) < HumanRadius + infectionRadius) {
 				human.setInfected();
 			}

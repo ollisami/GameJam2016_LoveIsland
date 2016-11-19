@@ -16,7 +16,6 @@ public class Background : MonoBehaviour {
 			float y = Random.Range (-4, 4);
 
 			Instantiate (palmTree, new Vector3 (x, y, 0), Quaternion.identity);
-			print (x + "x" + y);
 		}
 	}
 	
