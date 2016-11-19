@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   peoplePrefabs:
   - {fileID: 1000010203617598, guid: a85753d08568c2b4f854b8a12ee45f5e, type: 2}
+  personMovments: []
   PeopleToSpawn: 6
 --- !u!4 &988692267
 Transform:
@@ -465,7 +466,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 993776535}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 988692266}
+        m_MethodName: setPowerup
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &993776535
@@ -487,8 +499,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: 8eed2e98b2c38a344948edd1705788ac, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -702,7 +714,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1689792018
 RectTransform:
   m_ObjectHideFlags: 0
@@ -877,7 +889,7 @@ Prefab:
     - target: {fileID: 224000010151623952, guid: e4666c945ae36a54cb15dd38b8932ae2,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -51
+      value: -67
       objectReference: {fileID: 0}
     - target: {fileID: 224000012568597700, guid: e4666c945ae36a54cb15dd38b8932ae2,
         type: 2}
@@ -892,11 +904,11 @@ Prefab:
     - target: {fileID: 224000010151623952, guid: e4666c945ae36a54cb15dd38b8932ae2,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: -39
+      value: -69
       objectReference: {fileID: 0}
     - target: {fileID: 1000010478621978, guid: e4666c945ae36a54cb15dd38b8932ae2, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013606082918, guid: e4666c945ae36a54cb15dd38b8932ae2, type: 2}
       propertyPath: m_IsActive
