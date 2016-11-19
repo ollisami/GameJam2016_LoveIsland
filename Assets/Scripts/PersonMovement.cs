@@ -25,6 +25,8 @@ public class PersonMovement : MonoBehaviour {
 	public GameObject targetObject = null;
 	public int dir = 0;
 
+	public GameObject HeartDropPrefab;
+
 
 	// Use this for initialization
 	void Start () {
@@ -44,6 +46,7 @@ public class PersonMovement : MonoBehaviour {
 				infected = false;
 
 				gameController.OnInfectionEnded ();
+				Instantiate (HeartDropPrefab, this.transform.position, Quaternion.identity);
 			}
 		}
 	}
