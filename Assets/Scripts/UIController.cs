@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour {
 			this.GameOverUI.SetActive (true);
 		}
 
-		this.ScoreText.text = "Lovers Infected: " + gameController.TotalInfections;
+		this.ScoreText.text = CoinManager.Instance.CoinCount.ToString();
 	}
 
 	private void OnPlayAgainButtonClicked() {

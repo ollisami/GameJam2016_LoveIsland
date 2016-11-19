@@ -24,6 +24,8 @@ public class PersonMovement : MonoBehaviour {
 	public float InfectionLength = 3.0f; // can be set in editor
 	public GameObject targetObject = null;
 
+	public GameObject HeartDropPrefab;
+
 
 	// Use this for initialization
 	void Start () {
@@ -44,6 +46,7 @@ public class PersonMovement : MonoBehaviour {
 				infected = false;
 
 				gameController.OnInfectionEnded ();
+				Instantiate (HeartDropPrefab, this.transform);
 			}
 		}
 	}
