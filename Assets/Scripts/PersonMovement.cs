@@ -46,7 +46,7 @@ public class PersonMovement : MonoBehaviour {
 				infected = false;
 
 				gameController.OnInfectionEnded ();
-				Instantiate (HeartDropPrefab, this.transform);
+				Instantiate (HeartDropPrefab, this.transform.position, Quaternion.identity);
 			}
 		}
 		setSprite ();
