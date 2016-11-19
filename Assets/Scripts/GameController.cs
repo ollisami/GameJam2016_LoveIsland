@@ -20,6 +20,9 @@ public class GameController : MonoBehaviour {
 
 	public int PeopleToSpawn = 6;
 
+	// Game can be temporarily frozen with a powerup
+	private bool frozen = false;
+
 	public bool HasGameEnded {
 		get {
 			// if infection is started and there are no infected people OR  
@@ -72,6 +75,10 @@ public class GameController : MonoBehaviour {
 
 	public void OnInfectionEnded() {
 		infectedCount--;
+	}
+
+	public bool isFrozen() {
+		return frozen;
 	}
 
 	public void setPowerup(int index) {

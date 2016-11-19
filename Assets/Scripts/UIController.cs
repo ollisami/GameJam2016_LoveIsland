@@ -8,6 +8,7 @@ public class UIController : MonoBehaviour {
 
 	public Text ScoreText;
 	public GameObject GameOverUI;
+	public GameObject FreezeOverlay;
 
 	// Use this for initialization
 	private void Start () {
@@ -23,7 +24,20 @@ public class UIController : MonoBehaviour {
 			this.GameOverUI.SetActive (true);
 		}
 
+		setFreezeOverlay (gameController.isFrozen ());
+
 		this.ScoreText.text = CoinManager.Instance.CoinCount.ToString();
+	}
+
+	private void setFreezeOverlay(bool visible) {
+		
+		if (visible) {
+			print ("aaa");
+			FreezeOverlay.GetComponent<SpriteRenderer> ().enabled = true;
+		} else {
+			print ("ooo");
+			FreezeOverlay.GetComponent<SpriteRenderer> ().enabled = false;
+		}
 	}
 
 	private void OnPlayAgainButtonClicked() {
