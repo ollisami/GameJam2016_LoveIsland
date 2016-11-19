@@ -165,6 +165,9 @@ public class PersonMovement : MonoBehaviour {
 		if (infected) {
 			rend.sprite = infectedSprite;
 
+			if (infectionTime < 1.5f) {
+				rend.sprite = infectionTime % 0.4 > 0.2 ? usedSprite : infectedSprite; 
+			}
 		} else if (hasBeenInfected) {
 			rend.sprite = usedSprite;
 		} else {
