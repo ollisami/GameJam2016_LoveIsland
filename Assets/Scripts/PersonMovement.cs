@@ -26,6 +26,10 @@ public class PersonMovement : MonoBehaviour {
 	private Transform chasingTrans; 
 	public int dir = 0;
 
+	//POWERUPS 
+	private bool speedUpMode = false;
+	private float speedUpTimer = 3.0F;
+
 	public GameObject HeartDropPrefab;
 
 
@@ -48,6 +52,14 @@ public class PersonMovement : MonoBehaviour {
 
 				gameController.OnInfectionEnded ();
 				Instantiate (HeartDropPrefab, this.transform.position, Quaternion.identity);
+			}
+		}
+
+		if (speedUpMode) {
+			speedUpTimer -= Time.deltaTime;
+			if (speedUpTimer <= 0) {
+				speedMultiplier = speedMultiplier / 1.5F;
+				speedUpMode = false;
 			}
 		}
 	}
@@ -98,20 +110,18 @@ public class PersonMovement : MonoBehaviour {
 		infectionTime = this.InfectionLength;
 		gameController.OnNewInfection ();
 	}
+		
 
 	public void setTargetPos() {
-		if (chasingTrans != null) {
+		if (!infected && chasingTrans != null) {
 			Vector3 dir = transform.position - chasingTrans.position;
 			dir.Normalize ();
-			target = new Vector2 (transform.position.x + (dir.x * 3), transform.position.y + (dir.y * 3));
+			target = new Vector2 (transform.position.x + dir.x, transform.position.y + dir.y);
 			chasingTrans = null;
 		}
-
-
 		Vector2 pos = Vector2.zero;
-		if (!infected)
-			pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
-		else {
+		pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
+		if (infected) {
 			if (targetObject == null || targetObject.GetComponent<PersonMovement> ().isInfected ()) {
 				GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
 				for (int i = 0; i < people.Length; i++) {
@@ -164,6 +174,14 @@ public class PersonMovement : MonoBehaviour {
 		euler.z = dir;
 		transform.eulerAngles = euler;
 
+	}
+
+	public void speedUp() {
+		if (!speedUpMode && infected) {
+			speedUpTimer = 3F;
+			speedMultiplier = speedMultiplier * 1.5F;
+			speedUpMode = true;
+		}
 	}
 		
 }
