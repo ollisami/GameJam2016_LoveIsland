@@ -23,6 +23,12 @@ public class Decoration : MonoBehaviour {
 	void OnTriggerStay2D(Collider2D collider) {
 		// Lower alpha when something is underneath
 
+		PersonMovement person = collider.GetComponent<PersonMovement> ();
+
+		if (person != null) {
+			person.setIsHiding (true);
+		}
+
 		if (collider.GetComponent<PersonMovement> () != null) {
 			isCovered = true;
 		}
@@ -30,6 +36,12 @@ public class Decoration : MonoBehaviour {
 
 	void OnTriggerExit2D(Collider2D collider) {
 		// Show decoration entirely when nothing is under
+		PersonMovement person = collider.GetComponent<PersonMovement> ();
+
+		if (person != null) {
+			person.setIsHiding (false);
+		}
+
 		if (collider.GetComponent<PersonMovement> () != null) {
 			isCovered = false;
 		}
