@@ -122,16 +122,16 @@ public class PersonMovement : MonoBehaviour {
 	}
 
 	private void checkCollision () {
-		RaycastHit2D[] hits = Physics2D.CircleCastAll (transform.position, 0.5F, Vector2.zero);
-		foreach (RaycastHit2D hit in hits) {
-			if (hit.collider.gameObject != this.gameObject && hit.collider.gameObject.tag == "people") {
+		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 0.4F);
+		foreach (Collider2D hit in hits) {
+			if (hit.gameObject != this.gameObject && hit.gameObject.tag == "people") {
 				if (infected) {
-					hit.collider.gameObject.GetComponent<PersonMovement> ().setInfected();
+					hit.gameObject.GetComponent<PersonMovement> ().setInfected();
 				}
-				/*Vector3 newPos = Vector3.MoveTowards(transform.position, hit.collider.gameObject.transform.position, -2.0F);
-				target.x = newPos.x;
-				target.y = newPos.y;
-				*/
+				//Vector3 newPos = Vector3.MoveTowards(transform.position, hit.gameObject.transform.position, -2.0F);
+				//target.x = newPos.x;
+				//target.y = newPos.y;
+
 			}
 		}
 	}
