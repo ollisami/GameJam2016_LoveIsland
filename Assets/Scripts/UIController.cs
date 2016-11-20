@@ -76,8 +76,8 @@ public class UIController : MonoBehaviour {
 	}
 
 	private static bool WasLevelPassed(int level, int totalPeople, int infections) {
-		return infections > totalPeople * 0.5f; // TODO: modify this, atm if you infect
-												// 50% people, you pass
+		return infections > totalPeople * 0.75f; // TODO: modify this, atm if you infect
+												// 70% people, you pass
 	}
 
 	private void ShowLevelFinishedUI(bool didPlayerPassLevel) {
