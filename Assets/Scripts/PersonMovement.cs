@@ -20,7 +20,7 @@ public class PersonMovement : MonoBehaviour {
 	public Sprite normalSprite;
 	public Sprite infectedSprite;
 	public Sprite usedSprite;
-	SpriteRenderer rend;
+	public SpriteRenderer rend;
 
 	public float InfectionLength = 3.0f; // can be set in editor
 	private GameObject targetObject = null;
@@ -39,7 +39,6 @@ public class PersonMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		rend = GetComponentInChildren<SpriteRenderer>();
 		gameController = FindObjectOfType<GameController> ();
 
 		speedMultiplier = GetComponentInChildren<PersonBehavior> ().getSpeed ();
