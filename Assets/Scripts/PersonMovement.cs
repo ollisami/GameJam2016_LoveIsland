@@ -122,25 +122,33 @@ public class PersonMovement : MonoBehaviour {
 
 	public void setTargetPos() {
 		if (!infected && chasingTrans != null) {
-			Vector3 dir = transform.position - chasingTrans.position;
-			dir.Normalize ();
-			target = new Vector2 (transform.position.x + dir.x, transform.position.y + dir.y);
+			int dirX = (int)transform.position.x - (int)chasingTrans.position.x;
+			int dirY = (int)transform.position.y - (int)chasingTrans.position.y;
+			target = new Vector2 (transform.position.x + dirX, transform.position.y + dirY);
 			chasingTrans = null;
 		}
 		Vector2 pos = Vector2.zero;
+		Vector3 targetPos = new Vector3 (1000, 1000, 0);
 		pos = new Vector2 (Random.Range ((mapSize_X / 2) * -1, mapSize_X / 2), Random.Range ((mapSize_Y / 2) * -1, mapSize_Y / 2));
 		if (infected) {
 			if (targetObject == null || targetObject.GetComponent<PersonMovement> ().isInfected ()) {
 				GameObject[] people = GameObject.FindGameObjectsWithTag ("people");
 				for (int i = 0; i < people.Length; i++) {
 					if (people [i].GetComponent<PersonMovement> ().isInfected () == false) {
-						targetObject = people [i];
+						if(Vector3.Distance(transform.position, people[i].transform.position) < Vector3.Distance(transform.position, targetPos)) {
+							targetObject = people [i];
+							targetPos = people [i].transform.position;
+						}
 					}
 				}
 			}
 			if (targetObject != null) {
-				pos.x = targetObject.transform.position.x;
-				pos.y = targetObject.transform.position.y;
+				int dirX = (int)transform.position.x - (int)targetObject.transform.position.x;
+				int dirY = (int)transform.position.y - (int)targetObject.transform.position.y;
+				pos.x = targetObject.transform.position.x + (dirX * -0.2F);
+				pos.y = targetObject.transform.position.y + (dirY * -0.2F);
+			} else {
+				pos = Vector2.zero;
 			}
 		}
 		target = pos;
@@ -152,7 +160,7 @@ public class PersonMovement : MonoBehaviour {
 		Collider2D[] hits = Physics2D.OverlapCircleAll (transform.position, 1.0F);
 		foreach (Collider2D hit in hits) {
 			if (hit.gameObject != this.gameObject && hit.gameObject.tag == "people") {
-				if (infected && Vector3.Distance(transform.position, hit.transform.position) < 0.4F) {
+				if (infected && Vector3.Distance(transform.position, hit.transform.position) < 0.8F) {
 					hit.gameObject.GetComponent<PersonMovement> ().setInfected ();
 				} else if (!hasBeenInfected && hit.gameObject.GetComponent<PersonMovement> ().isInfected ()) {
 					//Juokse karkuun paitsi jos jompikumpi on puskassa

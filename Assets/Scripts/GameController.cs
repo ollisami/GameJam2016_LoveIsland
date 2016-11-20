@@ -24,6 +24,8 @@ public class GameController : MonoBehaviour {
 	private bool frozen = false;
 	private float freezeTimeLeft = 3f;
 
+	public int leve_id = 0;
+
 	public bool HasGameEnded {
 		get {
 			// if infection is started and there are no infected people OR  

@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Background : MonoBehaviour {
 
-	private int DECORATION_COUNT = 15;
+	public int DECORATION_COUNT = 15;
 
 	GameObject gameObject;
 

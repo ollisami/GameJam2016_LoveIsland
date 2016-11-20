@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 public class LevelManager
 {
 	public int CurrentLevel = 1;
-	public const int LevelCount = 2; // TODO: modify this when you add new levels
+	public const int LevelCount = 6; // TODO: modify this when you add new levels
 
 	public static readonly LevelManager Instance = new LevelManager();
 	private LevelManager ()
