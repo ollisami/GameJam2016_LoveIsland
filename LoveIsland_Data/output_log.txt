@@ -1,0 +1,39 @@
+Initialize engine version: 5.4.3f1 (01f4c123905a)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 960M (ID=0x139b)
+    Vendor:   NVIDIA
+    VRAM:     2018 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.116 seconds
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\0Sami\Documents\UnityProjects\GameJam2016_LoveIsland\LoveIsland_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.053210 ms
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 5.612255 ms
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 346.
+Total: 0.283830 ms (FindLiveObjects: 0.031580 ms CreateObjectMapping: 0.014211 ms MarkObjects: 0.225406 ms  DeleteObjects: 0.011842 ms)
+
+Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.503709 ms
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 346.
+Total: 0.260144 ms (FindLiveObjects: 0.021711 ms CreateObjectMapping: 0.011053 ms MarkObjects: 0.216326 ms  DeleteObjects: 0.010263 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 1498 -> priority: 1 
+  Thread -> id: 2934 -> priority: 1 
