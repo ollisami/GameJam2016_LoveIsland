@@ -110,7 +110,7 @@ GameObject:
   - 114: {fileID: 114000013018565464}
   - 114: {fileID: 114000013535592628}
   m_Layer: 5
-  m_Name: PowerUpButton0 (1)
+  m_Name: PowerUpButton2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,7 +128,7 @@ GameObject:
   - 114: {fileID: 114000011928996818}
   - 114: {fileID: 114000011770686398}
   m_Layer: 5
-  m_Name: PowerUpButton0
+  m_Name: PowerUpButton1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -345,7 +345,7 @@ GameObject:
   - 114: {fileID: 114000013724311784}
   - 114: {fileID: 114000012281633474}
   m_Layer: 5
-  m_Name: PowerUpButton0 (2)
+  m_Name: PowerUpButton3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

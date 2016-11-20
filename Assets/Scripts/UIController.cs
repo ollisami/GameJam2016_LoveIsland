@@ -9,6 +9,10 @@ public class UIController : MonoBehaviour {
 	private bool hasLevelEndBeenHandled = false;
 	private bool didPlayerPassLevel = false;
 
+	private Button powerUp1;
+	private Button powerUp2;
+	private Button powerUp3;
+
 	public Text ScoreText;
 	public GameObject GameOverUI;
 	public GameObject FreezeOverlay;
@@ -19,6 +23,10 @@ public class UIController : MonoBehaviour {
 
 		Button playAgainButton = this.GameOverUI.GetComponentInChildren<Button> ();
 		playAgainButton.onClick.AddListener(this.OnPlayAgainButtonClicked);
+
+		powerUp1 = GameObject.Find ("PowerUpButton1").GetComponent<Button> ();
+		powerUp2 = GameObject.Find ("PowerUpButton2").GetComponent<Button> ();
+		powerUp3 = GameObject.Find ("PowerUpButton3").GetComponent<Button> ();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +39,10 @@ public class UIController : MonoBehaviour {
 
 		setFreezeOverlay (gameController.isFrozen);
 		this.ScoreText.text = CoinManager.Instance.CoinCount.ToString();
+
+		powerUp1.interactable = CoinManager.Instance.CoinCount >= 5;
+		powerUp2.interactable = CoinManager.Instance.CoinCount >= 7;
+		powerUp3.interactable = CoinManager.Instance.CoinCount >= 10;
 	}
 
 	private void setFreezeOverlay(bool visible) {
