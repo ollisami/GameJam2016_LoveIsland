@@ -131,21 +131,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010744160138, guid: 4f706054eebb0c94c90aeb0a3aa59b58, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4000010744160138, guid: 4f706054eebb0c94c90aeb0a3aa59b58, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 114000013438011552, guid: 4f706054eebb0c94c90aeb0a3aa59b58,
         type: 2}
       propertyPath: PeopleToSpawn
-      value: 4
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114000011272873810, guid: 4f706054eebb0c94c90aeb0a3aa59b58,
         type: 2}
       propertyPath: DECORATION_COUNT
-      value: 2
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 20000012046018962, guid: 4f706054eebb0c94c90aeb0a3aa59b58,
+        type: 2}
+      propertyPath: orthographic size
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 4f706054eebb0c94c90aeb0a3aa59b58, type: 2}
