@@ -18,6 +18,8 @@ public class HeartDropScript : MonoBehaviour {
 		if (isCollected) {
 			lerpToUI += Time.deltaTime * 2f;
 			this.transform.position = Vector2.Lerp (dropPosition, GetCameraTopLeftCoordinate (), lerpToUI * lerpToUI);
+			this.transform.localScale *= Mathf.Lerp (1, 1.6f, lerpToUI);
+
 			if (lerpToUI > 1) {
 
 				CoinManager.Instance.AddCoins (1);
@@ -34,8 +36,8 @@ public class HeartDropScript : MonoBehaviour {
 	private Vector2 GetCameraTopLeftCoordinate() {
 		var camera = Camera.main;
 
-		float left = camera.transform.position.x - camera.orthographicSize * camera.aspect * 0.95f;
-		float top = camera.transform.position.y + camera.orthographicSize * 0.95f;
+		float left = camera.transform.position.x - camera.orthographicSize * camera.aspect * 0.85f;
+		float top = camera.transform.position.y + camera.orthographicSize * 0.725f;
 
 		return new Vector2 (left, top);
 	}
