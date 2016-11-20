@@ -22,6 +22,7 @@ public class GameController : MonoBehaviour {
 
 	// Game can be temporarily frozen with a powerup
 	private bool frozen = false;
+	private float freezeTimeLeft = 3f;
 
 	public bool HasGameEnded {
 		get {
@@ -36,6 +37,11 @@ public class GameController : MonoBehaviour {
 		get { return infectionsTotal; } 
 	}
 
+	public bool isFrozen {
+		get { return frozen; }
+		set { frozen = value; }
+	}
+
 	// Use this for initialization
 	void Start () {
 		spawnPeople (this.PeopleToSpawn);
@@ -45,6 +51,13 @@ public class GameController : MonoBehaviour {
 	void Update () {
 		if (!hasStartedInfection && Input.GetKeyDown (KeyCode.Mouse0)) {
 			startInfection (Camera.main.ScreenToWorldPoint (Input.mousePosition));
+		}
+
+		if (frozen && freezeTimeLeft <= 0) {
+			frozen = false;
+			freezeTimeLeft = 3f;
+		} else {
+			freezeTimeLeft -= Time.deltaTime;
 		}
 	}
 
@@ -77,8 +90,9 @@ public class GameController : MonoBehaviour {
 		infectedCount--;
 	}
 
-	public bool isFrozen() {
-		return frozen;
+	public void freezeGame() {
+		isFrozen = true;
+		freezeTimeLeft = 3f;
 	}
 
 	public void setPowerup(int index) {
@@ -91,7 +105,10 @@ public class GameController : MonoBehaviour {
 			}
 		}
 		if (index == 1) {
-
+			// Freeze powerup
+			if (!isFrozen && CoinManager.Instance.UseCoins (7)) {
+				freezeGame ();
+			}
 		}
 		if (index == 2) {
 			if (CoinManager.Instance.UseCoins (10)) {

@@ -24,7 +24,7 @@ public class UIController : MonoBehaviour {
 			this.GameOverUI.SetActive (true);
 		}
 
-		setFreezeOverlay (gameController.isFrozen ());
+		setFreezeOverlay (gameController.isFrozen);
 
 		this.ScoreText.text = CoinManager.Instance.CoinCount.ToString();
 	}
@@ -32,10 +32,12 @@ public class UIController : MonoBehaviour {
 	private void setFreezeOverlay(bool visible) {
 		
 		if (visible) {
-			print ("aaa");
 			FreezeOverlay.GetComponent<SpriteRenderer> ().enabled = true;
+			Color tmp = FreezeOverlay.GetComponent<SpriteRenderer> ().color;
+			tmp.a = 0.5f;
+
+			FreezeOverlay.GetComponent<SpriteRenderer> ().color = tmp;
 		} else {
-			print ("ooo");
 			FreezeOverlay.GetComponent<SpriteRenderer> ().enabled = false;
 		}
 	}

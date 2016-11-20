@@ -47,6 +47,10 @@ public class PersonMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (gameController.isFrozen) {
+			return;
+		}
+
 		move ();
 		if (infected) {
 			infectionTime -= Time.deltaTime;
@@ -197,10 +201,5 @@ public class PersonMovement : MonoBehaviour {
 			speedMultiplier = speedMultiplier * 2F;
 			speedUpMode = true;
 		}
-	}
-
-	public void freezeGame() {
-
-	}
-		
+	}		
 }
