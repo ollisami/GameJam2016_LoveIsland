@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
-	private InfectionStart infectionStart = new ClickInfectionStarter();
+	private InfectionStart infectionStart = new LoveProjectileInfectionStarter();
 
 	private int infectedCount = 0;
 	private int infectionsTotal = 0;
@@ -28,7 +28,7 @@ public class GameController : MonoBehaviour {
 		get {
 			// if infection is started and there are no infected people OR  
 			// everyone has been infected, then the game is over
-			return hasStartedInfection && (infectedCount == 0 ||
+			return hasStartedInfection && ((infectedCount == 0 && FindObjectsOfType<LoveProjectile>().Length == 0) ||
 				infectionsTotal == PeopleToSpawn);
 		}
 	}
