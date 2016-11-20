@@ -36,7 +36,7 @@ public class HeartDropScript : MonoBehaviour {
 	private Vector2 GetCameraTopLeftCoordinate() {
 		var camera = Camera.main;
 
-		float left = camera.transform.position.x - camera.orthographicSize * camera.aspect * 0.85f;
+		float left = camera.transform.position.x - camera.orthographicSize * camera.aspect * 0.875f;
 		float top = camera.transform.position.y + camera.orthographicSize * 0.725f;
 
 		return new Vector2 (left, top);
