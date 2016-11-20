@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class GameController : MonoBehaviour {
 	private InfectionStart infectionStart = new LoveProjectileInfectionStarter();
@@ -51,7 +52,7 @@ public class GameController : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if (!hasStartedInfection && Input.GetKeyDown (KeyCode.Mouse0)) {
+		if (!hasStartedInfection && Input.GetKeyDown (KeyCode.Mouse0) && !EventSystem.current.IsPointerOverGameObject()) {
 			startInfection (Camera.main.ScreenToWorldPoint (Input.mousePosition));
 		}
 
