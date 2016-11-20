@@ -54,7 +54,7 @@ public class PersonMovement : MonoBehaviour {
 		move ();
 		if (infected) {
 			infectionTime -= Time.deltaTime;
-			if (infectionTime <= 0) {
+			if (infectionTime <= 0 || gameController.HasGameEnded) {
 				hasBeenInfected = true;
 				infected = false;
 

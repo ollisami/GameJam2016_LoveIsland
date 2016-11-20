@@ -23,7 +23,7 @@ public class GameController : MonoBehaviour {
 
 	// Game can be temporarily frozen with a powerup
 	private bool frozen = false;
-	private float freezeTimeLeft = 3f;
+	private float freezeTimeLeft = 5f;
 
 	public int leve_id = 0;
 
